@@ -11,9 +11,12 @@ class LoginForm extends React.Component {
   }//constructor
 
   handleChangeToUsername = (event) => {
+    //console.log(this)
+    console.log("Input username: ", event.target.value)
     this.setState({
       username: event.target.value
     })
+    console.log("New username in state: ", this.state.username)
   }//handleChangeToUsername
 
   handleChangeToPassword = (event) => {
@@ -24,7 +27,9 @@ class LoginForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    console.log("In handleSubmit, this.state.username: ", this.state.username)
     if (this.state.username.length > 0 && this.state.password.length > 0) {
+      //debugger 
       this.props.handleLogin(this.state.username, this.state.password)
     }//if
   }//handleSubmit
@@ -35,13 +40,23 @@ class LoginForm extends React.Component {
         <div>
           <label>
             Username
-            <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleChangeToUsername} />
+            <input id="username" 
+              name="username" 
+              type="text" 
+              value={this.state.username} 
+              onChange={this.handleChangeToUsername.bind(this)} 
+            />
           </label>
         </div>
         <div>
           <label>
             Password
-            <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChangeToPassword} />
+            <input id="password" 
+              name="password" 
+              type="password" 
+              value={this.state.password} 
+              onChange={this.handleChangeToPassword.bind(this)} 
+            />
           </label>
         </div>
         <div>
